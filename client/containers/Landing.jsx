@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import initializeHandler from '../util/handler';
 import { loginLink } from '../actions/config';
@@ -8,6 +9,10 @@ import { accessToken, accessTokenFailure } from '../actions/user';
 class Landing extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      isAuthenticated: false,
+    }
   }
 
   componentWillMount() {
@@ -24,11 +29,18 @@ class Landing extends Component {
     this.props.loginLink();
   }
 
-
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user.hasAccessToken) {
+      this.setState({
+        isAuthenticated: true,
+      });
+    }
+  }
 
   componentDidUpdate() {
     let that = this;
-    if (this.props.config.publicKey !== '' && this.props.config.plaidENV !== '') {
+    // FIXME: Not a big fan of this logic, might remove the login button entirely, pretty useless I think...
+    if (!this.state.isAuthenticated || (this.props.config.publicKey === '' && this.props.config.plaidENV === '')) {
       initializeHandler(this.props.config.publicKey, this.props.config.plaidENV, function(err, publicToken) {
         if (!err) {
           that.props.accessToken(publicToken);
@@ -40,15 +52,20 @@ class Landing extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <div>Hello Landing!</div>
-        <RaisedButton
-          label="Login"
-          onClick={() => this.getLogin()}
-          />
-      </div>
-    );
+    // IDEA: not sure if this is the best way for routing with Redirect from react-router-dom. Server side React might be better.
+    if (this.state.isAuthenticated) {
+      return (<Redirect to="/dashboard" />);
+    } else {
+      return (
+        <div>
+          <div>Hello Landing!</div>
+          <RaisedButton
+            label="Login"
+            onClick={() => this.getLogin()}
+            />
+        </div>
+      );
+    }
   }
 }
 
