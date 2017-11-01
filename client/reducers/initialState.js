@@ -11,7 +11,7 @@ const initialState = {
   },
   config: {
     errors: [],
-    publicToken: '',
+    publicKey: '',
     plaidENV: '',
   }
 }

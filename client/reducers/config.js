@@ -7,7 +7,7 @@ const config = handleActions({
     console.log('action: ', action);
     return {
       ...state,
-      publicToken: action.payload.data.PLAID_PUBLIC_KEY,
+      publicKey: action.payload.data.PLAID_PUBLIC_KEY,
       plaidENV: action.payload.data.PLAID_ENV,
     };
   }
