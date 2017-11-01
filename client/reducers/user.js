@@ -4,17 +4,15 @@ import initialState from './initialState';
 
 const user = handleActions({
   [accessToken](state, action) {
-    console.log('action, accessToken: ', action);
     return {
       ...state,
-      hasAccessToken: true,
+      hasAccessToken: action.payload.data.hasAccessToken,
     };
   },
   [accessTokenFailure](state, action) {
     return {
       ...state,
       hasAccessToken: false,
-      errors: action.payload,
     }
   }
 }, initialState.user);

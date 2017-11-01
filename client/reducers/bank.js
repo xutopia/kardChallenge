@@ -4,10 +4,10 @@ import initialState from './initialState';
 
 const bank = handleActions({
   [accounts](state, action) {
-    console.log('action in accounts: ', accounts);
     return {
       ...state,
-      accounts: action.payload,
+      accounts: action.payload.data.accounts,
+      numbers: action.payload.data.numbers,
     }
   },
 }, initialState.bank);
