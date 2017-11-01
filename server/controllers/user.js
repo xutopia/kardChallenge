@@ -17,11 +17,13 @@ module.exports = {
         tokens.accessToken = data.access_token;
         res.status(200).json({
           errors: null,
+          hasAccessToken: true,
         });
       })
       .catch(err => {
         res.status(400).json({
           errors: err,
+          hasAccessToken: false,
         });
       });
   }
