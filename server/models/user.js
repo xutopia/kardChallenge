@@ -10,8 +10,7 @@ module.exports = {
           resolve(null);
         })
         .catch(err => {
-          let message = 'Could not exchange public token, please try again!';
-          reject(message);
+          reject(err);
         });
     });
   }
