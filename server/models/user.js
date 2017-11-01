@@ -7,7 +7,7 @@ module.exports = {
       client.exchangePublicToken(publicToken)
         .then(tokenResponse => {
           tokens.accessToken = tokenResponse.access_token;
-          resolve(null);
+          resolve(tokens.accessToken);
         })
         .catch(err => {
           reject(err);

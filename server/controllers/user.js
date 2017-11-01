@@ -11,6 +11,7 @@ module.exports = {
   },
   getAccessToken: function(req, res, next) {
     tokens.publicToken = req.body.publicToken;
+    console.log('tokens.publicToken: ', tokens.publicToken);
 
     user.swapTokens(tokens.publicToken)
       .then(data => {
