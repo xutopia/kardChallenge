@@ -5,6 +5,7 @@ import { accounts, transactions } from '../actions/bank';
 import AccountTab from '../containers/AccountTab.jsx';
 import AllTransactions from '../containers/AllTransactions.jsx';
 import Overview from '../components/Overview.jsx';
+import { calculateAccountsTotal } from '../util/totals';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -19,11 +20,13 @@ class Dashboard extends Component {
 
   render() {
     let accounts = this.props.bank.accounts;
-    if (accounts.length) {
+    let transactions = this.props.bank.transactions;
+    if (accounts.length > 0 && transactions.length > 0) {
       return (
         <div>
-          <h1>Welcome</h1>
-          <Overview />
+          <h1>Welcome to the Dashboard</h1>
+          <Overview title="Debit" amount={calculateAccountsTotal(accounts, 'debit')} />
+          <Overview title="Credit" amount={calculateAccountsTotal(accounts, 'credit')} />
           <Tabs>
             <Tab label="All Transactions">
               <AllTransactions />
@@ -41,11 +44,7 @@ class Dashboard extends Component {
         </div>
       );
     } else {
-      return (
-        <div>
-          <h1>Welcome</h1>
-        </div>
-      )
+      return (<div></div>);
     }
   }
 }

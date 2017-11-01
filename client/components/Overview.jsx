@@ -5,7 +5,9 @@ import Paper from 'material-ui/Paper';
 const Overview = (props) => {
   return (
     <Paper style={styleLocal} zDepth={props.depth}>
-      <h1>hello paper</h1>
+      <h1>{props.title}</h1>
+      <br />
+      <h3>{props.amount}</h3>
     </Paper>
   );
 }
