@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
-import { accounts } from '../actions/bank';
+import { accounts, transactions } from '../actions/bank';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -11,6 +11,7 @@ class Dashboard extends Component {
   componentDidMount() {
     console.log('inside componentDidMount, should only see once');
     this.props.getAccounts();
+    this.props.getTransactions();
   }
 
   render() {
@@ -37,7 +38,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return ({
     getAccounts: (...args) => dispatch(accounts(...args)),
-    // accessToken: (...args) => dispatch(accessToken(...args)),
+    getTransactions: (...args) => dispatch(transactions(...args)),
     // accessTokenFailure: (...args) => dispatch(accessTokenFailure(...args)),
   });
 }

@@ -6,11 +6,9 @@ module.exports = {
     return new Promise((resolve, reject) => {
       client.getAuth(tokens.accessToken)
         .then(data => {
-          // console.log('inside the item model, looking at data: ', data);
           resolve(data);
         })
         .catch(err => {
-          // console.log('inside th item model, looking at err: ', err);
           reject(err);
         });
     });
