@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { accounts, transactions } from '../actions/bank';
-import AccountTab from '../components/AccountTab.jsx';
+import AccountTab from '../containers/AccountTab.jsx';
+import AllTransactions from '../containers/AllTransactions.jsx';
+import Overview from '../components/Overview.jsx';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -21,7 +23,11 @@ class Dashboard extends Component {
       return (
         <div>
           <h1>Welcome</h1>
+          <Overview />
           <Tabs>
+            <Tab label="All Transactions">
+              <AllTransactions />
+            </Tab>
             {
               accounts.map((account) => {
                 return (
