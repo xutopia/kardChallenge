@@ -9,6 +9,11 @@ const initialState = {
   bank: {
     errors: [],
   },
+  config: {
+    errors: [],
+    publicToken: '',
+    plaidENV: '',
+  }
 }
 
 export default initialState;
