@@ -7,6 +7,7 @@ module.exports = {
       client.exchangePublicToken(publicToken)
         .then(tokenResponse => {
           tokens.accessToken = tokenResponse.access_token;
+          console.log('inside swap tokens, looking at tokens: ', tokens);
           resolve(tokens.accessToken);
         })
         .catch(err => {

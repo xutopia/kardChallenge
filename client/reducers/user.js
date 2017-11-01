@@ -4,13 +4,13 @@ import initialState from './initialState';
 
 const user = handleActions({
   [accessToken](state, action) {
+    console.log('action, accessToken: ', action);
     return {
       ...state,
       hasAccessToken: true,
     };
   },
   [accessTokenFailure](state, action) {
-    console.log('action, accessTokenFailure: ', action);
     return {
       ...state,
       hasAccessToken: false,
