@@ -7,4 +7,4 @@ const client = new plaid.Client(
   plaid.environments[process.env.PLAID_ENV]
 );
 
-export default client;
+module.exports = client;

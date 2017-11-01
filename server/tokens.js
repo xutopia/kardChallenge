@@ -1,4 +1,4 @@
-export default tokens = {
+module.exports = {
   accessToken: null,
   publicToken: null,
 }
