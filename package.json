@@ -4,8 +4,11 @@
   "description": "Kard Financial coding challenge using Plaid",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --use_strict server/server.js",
-    "test": "mocha"
+    "dev": "webpack-dev-server --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "test": "mocha test/server/test-server.js",
+    "start": "node --use_strict ./server/server.js",
+    "start:dev": "nodemon --use_strict ./server/server.js"
   },
   "repository": {
     "type": "git",
@@ -27,8 +30,10 @@
     "moment": "^2.19.1",
     "morgan": "^1.9.0",
     "path": "^0.12.7",
+    "plaid": "^2.1.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-flexbox-grid": "^2.0.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
@@ -43,12 +48,16 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
+    "chai": "^4.1.2",
     "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
     "html-webpack-plugin": "^2.30.1",
     "mocha": "^4.0.1",
     "nodemon": "^1.12.1",
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
+    "style-loader": "^0.19.0",
+    "supertest": "^3.0.0",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.3",
     "webpack-merge": "^4.1.0"
