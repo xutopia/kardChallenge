@@ -25,7 +25,7 @@ class Landing extends Component {
     document.body.appendChild(script);
   }
 
-  getLogin = () => {
+  login = () => {
     this.props.loginLink();
   }
 
@@ -40,7 +40,7 @@ class Landing extends Component {
   componentDidUpdate() {
     let that = this;
     // FIXME: Not a big fan of this logic, might remove the login button entirely, pretty useless I think...
-    if (!this.state.isAuthenticated || (this.props.config.publicKey === '' && this.props.config.plaidENV === '')) {
+    if (!this.state.isAuthenticated && (this.props.config.publicKey !== '' && this.props.config.plaidENV !== '')) {
       initializeHandler(this.props.config.publicKey, this.props.config.plaidENV, function(err, publicToken) {
         if (!err) {
           that.props.accessToken(publicToken);
@@ -58,10 +58,9 @@ class Landing extends Component {
     } else {
       return (
         <div>
-          <div>Hello Landing!</div>
           <RaisedButton
             label="Login"
-            onClick={() => this.getLogin()}
+            onClick={() => this.login()}
             />
         </div>
       );
