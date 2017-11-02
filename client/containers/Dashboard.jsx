@@ -15,7 +15,13 @@ class Dashboard extends Component {
   componentDidMount() {
     this.props.getAccounts();
     // TODO: can elaborate the getTransactions to allow user to enter certain dates that they want to retrieve transactions for. Not really applicable with only a sandbox plaid account.
-    this.props.getTransactions();
+    // this.props.getTransactions();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.bank.accounts.length > 0 && nextProps.bank.transactions.length === 0) {
+      this.props.getTransactions();
+    }
   }
 
   render() {

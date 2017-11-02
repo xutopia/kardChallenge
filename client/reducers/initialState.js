@@ -9,6 +9,7 @@ const initialState = {
   bank: {
     accounts: [],
     errors: [],
+    transactions: [],
   },
   config: {
     errors: [],
