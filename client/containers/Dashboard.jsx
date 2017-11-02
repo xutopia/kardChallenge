@@ -38,8 +38,16 @@ class Dashboard extends Component {
             {
               accounts.map((account) => {
                 return (
-                  <Tab key={account.account_id}>
-                    <AccountTab account={account} />
+                  <Tab
+                    key={account.account_id}
+                    label={account.name}
+                  >
+                    <AccountTab
+                      officialName={account.official_name}
+                      accountId={account.account_id}
+                      subType={account.subtype}
+                      mask={account.mask}
+                    />
                   </Tab>
                 );
               })

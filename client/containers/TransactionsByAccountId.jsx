@@ -3,21 +3,22 @@ import { connect } from 'react-redux';
 import { List } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import TransactionItem from '../components/TransactionItem.jsx';
-import { filterTransactions } from '../util/filters';
+import { filterTransactions, filterTransactionsByAccountId } from '../util/filters';
 
-class AllTransactions extends Component {
+class TransactionsByAccountId extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       debit: true,
       credit: true,
-      transactions: this.props.bank.transactions,
+      transactions: filterTransactionsByAccountId(this.props.bank.transactions, props.accountId),
     }
   }
 
   filterDebit = () => {
     // console.log('debit', this.state.debit);
-    let filteredTransactions = filterTransactions(this.props.bank.transactions, !this.state.debit, this.state.credit)
+    let filteredTransactions = filterTransactions(this.state.transactions, !this.state.debit, this.state.credit)
     this.setState({
       debit: !this.state.debit,
       transactions: filteredTransactions,
@@ -25,7 +26,7 @@ class AllTransactions extends Component {
   }
 
   filterCredit = () => {
-    let filteredTransactions = filterTransactions(this.props.bank.transactions, this.state.debit, !this.state.credit)
+    let filteredTransactions = filterTransactions(this.state.transactions, this.state.debit, !this.state.credit)
     this.setState({
       credit: !this.state.debit,
       transactions: filteredTransactions,
@@ -74,4 +75,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(AllTransactions);
+export default connect(mapStateToProps)(TransactionsByAccountId);

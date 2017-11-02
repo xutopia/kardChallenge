@@ -13,3 +13,9 @@ export const filterTransactions = (transactions, debit, credit) => {
     });
   }
 }
+
+export const filterTransactionsByAccountId = (transactions, accountId) => {
+  return transactions.filter(transaction => {
+    return transaction.account_id === accountId;
+  });
+}

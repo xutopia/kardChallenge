@@ -1,18 +1,30 @@
 import React, { Component } from 'react';
-import { Tab } from 'material-ui/Tabs';
+import TransactionsByAccountId from './TransactionsByAccountId.jsx';
 
 class AccountTab extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      officialName: props.officialName,
+      accountId: props.accountId,
+      subType: props.subType,
+      mask: props.mask,
+    }
   }
 
 
 
   render() {
     return (
-      <Tab>
-        <h1>Hello Account {this.props.account}</h1>
-      </Tab>
+      <div>
+        <h1>{this.state.officialName}</h1>
+
+        <h3>{this.state.subType}</h3>
+        <h3>{this.state.mask}</h3>
+        <br />
+        <TransactionsByAccountId accountId={this.state.accountId} />
+      </div>
     );
   }
 }
