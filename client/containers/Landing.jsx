@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import initializeHandler from '../util/handler';
 import { loginLink } from '../actions/config';
 import { accessToken, accessTokenFailure } from '../actions/user';
@@ -57,12 +58,14 @@ class Landing extends Component {
       return (<Redirect to="/dashboard" />);
     } else {
       return (
-        <div>
-          <RaisedButton
-            label="Login"
-            onClick={() => this.login()}
+        <Grid fluid>
+          <Row center="lg">
+            <RaisedButton
+              label="Login"
+              onClick={() => this.login()}
             />
-        </div>
+          </Row>
+        </Grid>
       );
     }
   }
