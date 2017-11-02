@@ -63,6 +63,8 @@ class Landing extends Component {
             <RaisedButton
               label="Login"
               onClick={() => this.login()}
+              backgroundColor="#5DB586"
+              fullWidth={true}
             />
           </Row>
         </Grid>
