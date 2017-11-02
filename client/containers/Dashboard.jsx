@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { accounts, transactions } from '../actions/bank';
 import AccountTab from '../containers/AccountTab.jsx';
-import AllTransactions from '../containers/AllTransactions.jsx';
+import AllTransactions from './AllTransactions.jsx';
 import Overview from '../components/Overview.jsx';
 import { calculateAccountsTotal } from '../util/totals';
 
@@ -14,8 +14,6 @@ class Dashboard extends Component {
 
   componentDidMount() {
     this.props.getAccounts();
-    // TODO: can elaborate the getTransactions to allow user to enter certain dates that they want to retrieve transactions for. Not really applicable with only a sandbox plaid account.
-    // this.props.getTransactions();
   }
 
   componentWillReceiveProps(nextProps) {

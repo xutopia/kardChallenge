@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Tab } from 'material-ui/Tabs';
+import { connect } from 'react-redux';
+import { List } from 'material-ui/List';
+import TransactionItem from '../components/TransactionItem.jsx';
 
 class AllTransactions extends Component {
   constructor(props) {
@@ -9,12 +11,32 @@ class AllTransactions extends Component {
 
 
   render() {
+    let transactions = this.props.bank.transactions;
+    let transactionsList = transactions.map(transaction => {
+      return (
+        <TransactionItem
+          key={transaction.transaction_id}
+          title={transaction.name}
+          amount={transaction.amount}
+          date={transaction.date}
+        />
+      )
+    });
     return (
-      <Tab>
-        <h1>Hello AllTransactions</h1>
-      </Tab>
+      <div>
+        <h1>Transactions</h1>
+        <List>
+          {transactionsList}
+        </List>
+      </div>
     );
   }
 }
 
-export default AllTransactions;
+const mapStateToProps = (state) => {
+  return {
+    bank: state.bank,
+  }
+}
+
+export default connect(mapStateToProps)(AllTransactions);
