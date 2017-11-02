@@ -75,7 +75,7 @@ $ npm test
 
 ## Deployment
 
-This app is deployed on AWS Elastic Beanstalk, and can be accessed via [this link](bitly.com/skycast-tonyxu). For guidance on deploying your own version, please visit [AWS](https://aws.amazon.com/) for more information.
+This app is deployed on AWS Elastic Beanstalk, and can be accessed via [this link](bitly.com/kard-tonyxu). For guidance on deploying your own version, please visit [AWS](https://aws.amazon.com/) for more information.
 
 
 ## Built With
