@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { List } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import TransactionItem from '../components/TransactionItem.jsx';
-import { filterTransactions, filterTransactionsByAccountId } from '../util/filters';
+import { filterTransactionsByAccountId } from '../util/filters';
 
 class TransactionsByAccountId extends Component {
   constructor(props) {
@@ -12,13 +12,14 @@ class TransactionsByAccountId extends Component {
     this.state = {
       debit: true,
       credit: true,
-      transactions: filterTransactionsByAccountId(this.props.bank.transactions, props.accountId),
+      accountId: props.accountId,
+      transactions: filterTransactionsByAccountId(this.props.bank.transactions, props.accountId, true, true),
     }
   }
 
   filterDebit = () => {
     // console.log('debit', this.state.debit);
-    let filteredTransactions = filterTransactions(this.state.transactions, !this.state.debit, this.state.credit)
+    let filteredTransactions = filterTransactionsByAccountId(this.props.bank.transactions, this.state.accountId, !this.state.debit, this.state.credit)
     this.setState({
       debit: !this.state.debit,
       transactions: filteredTransactions,
@@ -26,9 +27,9 @@ class TransactionsByAccountId extends Component {
   }
 
   filterCredit = () => {
-    let filteredTransactions = filterTransactions(this.state.transactions, this.state.debit, !this.state.credit)
+    let filteredTransactions = filterTransactionsByAccountId(this.props.bank.transactions, this.state.accountId, this.state.debit, !this.state.credit)
     this.setState({
-      credit: !this.state.debit,
+      credit: !this.state.credit,
       transactions: filteredTransactions,
     });
   }

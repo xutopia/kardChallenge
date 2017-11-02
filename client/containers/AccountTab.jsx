@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TransactionsByAccountId from './TransactionsByAccountId.jsx';
 
+// FIXME: probably better for this component to be stateless. Will fix if there is time.
+
 class AccountTab extends Component {
   constructor(props) {
     super(props);

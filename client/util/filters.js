@@ -7,15 +7,19 @@ export const filterTransactions = (transactions, debit, credit) => {
     return transactions.filter(transaction => {
       return transaction.amount > 0;
     });
-  } else {
+  } else if (debit) {
     return transactions.filter(transaction => {
       return transaction.amount < 0;
     });
+  } else {
+    return [];
   }
 }
 
-export const filterTransactionsByAccountId = (transactions, accountId) => {
-  return transactions.filter(transaction => {
+export const filterTransactionsByAccountId = (transactions, accountId, debit, credit) => {
+  let transactionsByAccountId = transactions.filter(transaction => {
     return transaction.account_id === accountId;
   });
+
+  return filterTransactions(transactionsByAccountId, debit, credit);
 }

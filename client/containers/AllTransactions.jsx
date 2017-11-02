@@ -27,7 +27,7 @@ class AllTransactions extends Component {
   filterCredit = () => {
     let filteredTransactions = filterTransactions(this.props.bank.transactions, this.state.debit, !this.state.credit)
     this.setState({
-      credit: !this.state.debit,
+      credit: !this.state.credit,
       transactions: filteredTransactions,
     });
   }
