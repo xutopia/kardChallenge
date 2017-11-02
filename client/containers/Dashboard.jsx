@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import { accounts, transactions } from '../actions/bank';
 import AccountTab from '../containers/AccountTab.jsx';
 import AllTransactions from './AllTransactions.jsx';
@@ -27,10 +28,19 @@ class Dashboard extends Component {
     let transactions = this.props.bank.transactions;
     if (accounts.length > 0 && transactions.length > 0) {
       return (
-        <div>
-          <h1>Welcome to the Dashboard</h1>
-          <Overview title="Debit" amount={calculateAccountsTotal(accounts, 'debit')} />
-          <Overview title="Credit" amount={calculateAccountsTotal(accounts, 'credit')} />
+        <Grid fluid>
+          <Row>
+            <h1>Welcome to the Dashboard</h1>
+          </Row>
+          <Row center="lg">
+            <Col lg={6}>
+              <Overview title="Debit" amount={calculateAccountsTotal(accounts, 'debit')} />
+            </Col>
+            <Col lg={6}>
+              <Overview title="Credit" amount={calculateAccountsTotal(accounts, 'credit')} />
+            </Col>
+          </Row>
+          <br />
           <Tabs>
             <Tab label="All Transactions">
               <AllTransactions />
@@ -53,7 +63,7 @@ class Dashboard extends Component {
               })
             }
           </Tabs>
-        </div>
+        </Grid>
       );
     } else {
       return (<div></div>);
